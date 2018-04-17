@@ -32,9 +32,9 @@ module.exports = {
              * @param e
              */
             onClick(e) {
-                console.log("Calling parent func")
-                parent.cowi_test();
-
+                console.log("Calling parent");
+                window.parent.postMessage('Hello Parent Frame!', '*');
+                window.parent.postMessage({"hello": "World"}, '*');
             }
 
             /**
