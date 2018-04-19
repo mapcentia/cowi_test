@@ -1,11 +1,13 @@
 'use strict';
 var utils;
+var print;
 
 var exId = "cowi_test";
 module.exports = {
     set: function (o) {
 
         utils = o.utils;
+        print = o.print;
 
     },
 
@@ -16,7 +18,16 @@ module.exports = {
 
         var ReactDOM = require('react-dom');
 
-        utils.createMainTab(exId, __("TEST"), __("TEST"));
+        //utils.createMainTab(exId, __("TEST"), __("TEST"));
+
+        print.setCallBack(function (e) {
+            if (!e.success) {
+                alert("Noget gik galt!")
+            } else {
+                console.log(e.key);
+                window.parent.postMessage({"key": e.key}, '*');
+            }
+        });
 
 
 
