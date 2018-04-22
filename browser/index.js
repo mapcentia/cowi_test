@@ -1,6 +1,7 @@
 'use strict';
 var utils;
 var print;
+var backboneEvents;
 
 var exId = "cowi_test";
 module.exports = {
@@ -8,6 +9,7 @@ module.exports = {
 
         utils = o.utils;
         print = o.print;
+        backboneEvents = o.backboneEvents;
 
     },
 
@@ -18,7 +20,7 @@ module.exports = {
 
         var ReactDOM = require('react-dom');
 
-        //utils.createMainTab(exId, __("TEST"), __("TEST"));
+        utils.createMainTab(exId, __("TEST"), __("TEST"));
 
         print.setCallBack(function (e) {
             if (!e.success) {
@@ -46,6 +48,7 @@ module.exports = {
                 console.log("Calling parent");
                 window.parent.postMessage('Hello Parent Frame!', '*');
                 window.parent.postMessage({"hello": "World"}, '*');
+                backboneEvents.get().trigger("reset:all");
             }
 
             /**
